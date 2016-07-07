@@ -5,10 +5,10 @@
   "scripts": {
     "start": "./node_modules/.bin/nodemon ./bin/www",
     "start-test": "NODE_ENV=test ./node_modules/.bin/nodemon ./bin/www",
-    "db:drop": "dropdb video-store-api-dev; dropdb video-store-api-test",
-    "db:create": "createdb video-store-api-test; createdb video-store-api-dev",
-    "db:load": "",
-    "db:reset": "npm run db:drop; npm run db:create; npm run db:load",
+    "db:drop": "dropdb video-store-api-development; dropdb video-store-api-test",
+    "db:create": "createdb video-store-api-test; createdb video-store-api-development",
+    "db:load": "node tasks/schema.js; node tasks/seed.js",
+    "db:reset": "clear; npm run db:drop; npm run db:create; npm run db:load",
     "test": "clear; NODE_ENV=test ./node_modules/.bin/jasmine-node --captureExceptions --verbose spec/"
   },
   "dependencies": {
