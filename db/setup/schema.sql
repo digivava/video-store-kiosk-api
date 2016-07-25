@@ -4,7 +4,8 @@ CREATE TABLE movies(
   title text,
   overview text,
   release_date date,
-  inventory integer
+  inventory integer,
+  poster_filename text
 );
 
 CREATE INDEX movies_title on movies (title);
