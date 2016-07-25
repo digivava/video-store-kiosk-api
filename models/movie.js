@@ -21,7 +21,7 @@ Movie.findByTitle = function (title, callback) {
 }
 
 Movie.create = function (data, callback) {
-  db.movies.save(data, function(error, result) {
+  db.movies.save(data, function (error, result) {
     if (error) { callback(error, undefined); return }
     callback(null, new Movie(result))
   })
@@ -30,7 +30,7 @@ Movie.create = function (data, callback) {
 // attach housekeeping functions if we're in test
 if(app.get('env') === 'test') {
   Movie.end = function () { db.end() }
-  Movie.clean = function(callback) { db.setup.schema(callback) }
+  Movie.clean = function (callback) { db.setup.schema(callback) }
 }
 
 module.exports = Movie
