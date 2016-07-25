@@ -9,6 +9,23 @@ function Movie (data) {
 }
 
 // class methods
+Movie.all = function(options, callback) {
+  let queryOptions = { order: 'title ASC' }
+  if (options.p) {
+    queryOptions.offset = (options.p - 1) * (options.c || 10)
+  }
+
+  if (options.c) {
+    queryOptions.limit = options.c
+  }
+
+  db.movies.find({}, queryOptions, function (error, results) {
+    if (error) { callback(error, undefined); return }
+    let movies = results.map(function(data) { return new Movie(data) })
+    callback(null, movies)
+  })
+}
+
 Movie.findByTitle = function (title, callback) {
   db.movies.findOne({ title: title }, function (error, result) {
     if (error || !result) {
