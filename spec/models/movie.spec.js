@@ -24,14 +24,14 @@ describe('Movie', function () {
     Movie.end()
   })
 
-  describe('.all', function () {
+  describe('.fetch', function () {
     beforeEach(function (done) {
       Movie.create(fakeMovie2, done)
     })
 
     describe('with no query options', function() {
       it('returns all movies in the database by default', function (done) {
-        Movie.all({}, function(error, result) {
+        Movie.fetch({}, function(error, result) {
           expect(error).toBeNull()
           expect(result.length).toBe(2)
           done()
@@ -39,7 +39,7 @@ describe('Movie', function () {
       })
 
       it('returns an array of Movie instances', function (done) {
-        Movie.all({}, function (error, result) {
+        Movie.fetch({}, function (error, result) {
           expect(error).toBeNull()
 
           result.forEach(function (item) {
@@ -53,7 +53,7 @@ describe('Movie', function () {
 
     describe('with "c" query options', function () {
       it('uses the "c" option to determine how many Movies to return', function (done) {
-        Movie.all({c: 1}, function (error, result) {
+        Movie.fetch({c: 1}, function (error, result) {
           expect(error).toBeNull()
           expect(result.length).toBe(1)
 
@@ -64,7 +64,7 @@ describe('Movie', function () {
 
     describe('with the "p" query options', function () {
       it('uses the "p" option to manage the record offset', function (done) {
-        Movie.all({p: 2, c: 1}, function (error, result) {
+        Movie.fetch({p: 2, c: 1}, function (error, result) {
           expect(error).toBeNull()
 
           expect(result.length).toBe(1)
