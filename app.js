@@ -4,25 +4,29 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-
-var routes = require('./routes/index')
-
 var app = module.exports = express()
 
 var massive = require("massive")
 var connectionString = "postgres://localhost/video-store-api-" + app.get('env')
-
-// connect to Massive and get the db instance. You can safely use the
-// convenience sync method here because its on app load
-// you can also use loadSync - it's an alias
 var massiveInstance = massive.connectSync({connectionString : connectionString})
-
-// Set a reference to the massive instance on Express' app:
 app.set('db', massiveInstance)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')
+
+app.use(function (req, res, next) {
+  res.apiRespond = function (error, data) {
+    if (error) {
+      console.log(error)
+      res.status(500).json({error: error.message})
+    } else {
+      if (!data || !Object.keys(data).length) res.status(204)
+      res.json(data)      
+    }
+  }
+  next()
+})
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
@@ -32,7 +36,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', routes)
+app.use('/', require('./routes/index'))
+app.use('/movies', require('./routes/movies'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
