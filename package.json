@@ -1,12 +1,12 @@
 {
-  "name": "video-store-api",
+  "name": "video-store-kiosk-api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/nodemon ./bin/www",
     "start-test": "NODE_ENV=test ./node_modules/.bin/nodemon ./bin/www",
-    "db:drop": "dropdb video-store-api-development; dropdb video-store-api-test",
-    "db:create": "createdb video-store-api-test; createdb video-store-api-development",
+    "db:drop": "dropdb video-store-kiosk-api-development; dropdb video-store-kiosk-api-test",
+    "db:create": "createdb video-store-kiosk-api-test; createdb video-store-kiosk-api-development",
     "db:load": "node tasks/schema.js; node tasks/seed.js",
     "db:reset": "clear; npm run db:drop; npm run db:create; npm run db:load",
     "test": "clear; NODE_ENV=test ./node_modules/.bin/jasmine-node --captureExceptions --verbose spec/"

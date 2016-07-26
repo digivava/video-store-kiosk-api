@@ -1,5 +1,5 @@
 let massive = require('massive')
-let connectionString = "postgres://localhost/video-store-api-"
+let connectionString = "postgres://localhost/video-store-kiosk-api-"
 let envs = ['development', 'test']
 let complete = []
 
