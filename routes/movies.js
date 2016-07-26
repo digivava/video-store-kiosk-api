@@ -5,7 +5,7 @@ router.get('/', function (req, res) {
   Controller.getAll(req.query, res.apiRespond)
 })
 
-router.get('/:title', function (req, res) {
+router.get('/title/:title', function (req, res) {
   Controller.getByTitle(req.params.title, res.apiRespond)
 })
 
