@@ -1,6 +1,12 @@
 # Project: Video Store Kiosk API
 This is RESTful API buil with [NodeJS](https://nodejs.org/en/) and [Express](http://expressjs.com/). The goal of this API is to quickly serve information about the store's video collection. This repository provides two JSON datafiles to serve as the initial seeds for this system.
 
+## Running the API
+* clone the API to your machine
+* setup the project database using `$ npm run db:reset`
+* start the node server using `$ npm start`
+* send a GET request to `http://localhost:3000/`
+
 ## API Definition
 Every endpoint serves `json` data.
 
