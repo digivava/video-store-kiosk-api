@@ -12,11 +12,11 @@ function Movie (data) {
 Movie.fetch = function(options, callback) {
   let queryOptions = {
     order: 'title ASC',
-    limit: options.c || 10
+    limit: options.size || 10
   }
 
-  if (options.p) {
-    queryOptions.offset = (options.p - 1) * queryOptions.limit
+  if (options.page) {
+    queryOptions.offset = (options.page - 1) * queryOptions.limit
   }
 
   db.movies.find({}, queryOptions, function (error, results) {
