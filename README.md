@@ -3,6 +3,7 @@ This is RESTful API buil with [NodeJS](https://nodejs.org/en/) and [Express](htt
 
 ## Running the API
 * clone the API to your machine
+* install dependencies with `$ npm install`
 * setup the project database using `$ npm run db:reset`
 * start the node server using `$ npm start`
 * send a GET request to `http://localhost:3000/`
