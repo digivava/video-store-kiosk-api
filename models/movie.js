@@ -10,6 +10,10 @@ function Movie (data) {
 
 // class methods
 Movie.fetch = function(options, callback) {
+  // console.log(options)
+  // console.log(options.size)
+  //should change based on useragent headers from request
+
   let queryOptions = {
     order: 'title ASC',
     limit: options.size || 10
